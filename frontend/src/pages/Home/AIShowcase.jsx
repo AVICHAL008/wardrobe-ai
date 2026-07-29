@@ -1,82 +1,57 @@
+import { Sparkles, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import {
-  Upload,
-  Sparkles,
-  CloudSun,
-  Shirt,
-  ArrowDown,
-} from "lucide-react";
 
-function AIShowcase() {
+import Button from "../../components/ui/Button";
+import Container from "../../components/ui/Container";
+import Badge from "../../components/ui/Badge";
+import Glow from "../../components/ui/Glow";
+
+function Hero() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="text-center text-4xl font-bold">
-          See Wardrobe AI in Action
-        </h2>
+    <section className="relative overflow-hidden py-28">
+      <Glow className="left-10 top-10 h-80 w-80 bg-blue-500/20" />
+      <Glow className="right-10 bottom-10 h-96 w-96 bg-purple-500/20" />
 
-        <p className="mx-auto mt-5 max-w-3xl text-center text-gray-400">
-          Upload your clothes, let AI understand your wardrobe,
-          consider today's weather and occasion, then receive
-          personalized outfit recommendations instantly.
-        </p>
-      </motion.div>
+      <Container>
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Badge>
+              <Sparkles size={16} className="mr-2" />
+              AI Powered Outfit Recommendations
+            </Badge>
 
-      <div className="mt-16 flex flex-col items-center gap-5">
+            <h1 className="mt-8 text-5xl font-black leading-tight md:text-7xl">
+              Your Smart
+              <span className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
+                Wardrobe Assistant
+              </span>
+            </h1>
 
-        <WorkflowCard
-          icon={<Upload className="text-blue-400" size={30} />}
-          title="Upload Your Clothes"
-        />
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-8 text-gray-400">
+              Upload your wardrobe, receive AI-powered outfit suggestions,
+              discover color combinations, and dress confidently for every
+              occasion.
+            </p>
 
-        <ArrowDown className="text-gray-500" />
+            <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+              <Button>
+                Get Started
+                <ArrowRight className="ml-2" size={18} />
+              </Button>
 
-        <WorkflowCard
-          icon={<Sparkles className="text-cyan-400" size={30} />}
-          title="AI Analyzes Your Wardrobe"
-        />
-
-        <ArrowDown className="text-gray-500" />
-
-        <WorkflowCard
-          icon={<CloudSun className="text-yellow-400" size={30} />}
-          title="Weather + Occasion Analysis"
-        />
-
-        <ArrowDown className="text-gray-500" />
-
-        <WorkflowCard
-          icon={<Shirt className="text-green-400" size={30} />}
-          title="Perfect Outfit Recommendation"
-        />
-
-      </div>
+              <Button variant="secondary">
+                Explore Features
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </Container>
     </section>
   );
 }
 
-function WorkflowCard({ icon, title }) {
-  return (
-    <motion.div
-      whileHover={{
-        scale: 1.04,
-      }}
-      className="flex w-full max-w-xl items-center gap-5 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
-    >
-      <div className="rounded-2xl bg-white/5 p-4">
-        {icon}
-      </div>
-
-      <h3 className="text-xl font-semibold">
-        {title}
-      </h3>
-    </motion.div>
-  );
-}
-
-export default AIShowcase;
+export default Hero;
