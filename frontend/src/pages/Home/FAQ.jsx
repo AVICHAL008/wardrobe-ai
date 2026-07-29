@@ -37,7 +37,10 @@ function FAQ() {
   }
 
   return (
-    <section className="py-28">
+    <section
+      id="faq"
+      className="py-28"
+    >
       <Container>
         <SectionTitle
           badge="FAQ"

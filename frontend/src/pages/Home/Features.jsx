@@ -53,7 +53,10 @@ const features = [
 
 function Features() {
   return (
-    <section className="py-28">
+    <section
+  id="features"
+  className="py-28"
+>
       <Container>
         <SectionTitle
           badge="Features"

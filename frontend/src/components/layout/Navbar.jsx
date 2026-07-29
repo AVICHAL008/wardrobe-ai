@@ -1,36 +1,55 @@
+import { Link } from "react-router-dom";
+import { Sparkles } from "lucide-react";
+
+import Button from "../ui/Button";
+import Container from "../ui/Container";
+
 function Navbar() {
   return (
-    <header className="sticky top-0 z-50 px-6 pt-5">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-8 py-4 backdrop-blur-xl">
-
-        <h1 className="cursor-pointer text-2xl font-bold tracking-wide text-white">
-          Wardrobe AI
-        </h1>
-
-        <div className="hidden gap-8 text-gray-300 md:flex">
-          <a
-            href="#"
-            className="transition hover:text-blue-400"
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-black/30 backdrop-blur-xl">
+      <Container>
+        <nav className="flex h-20 items-center justify-between">
+          <Link
+            to="/"
+            className="flex items-center gap-3"
           >
-            Features
-          </a>
+            <div className="rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 p-2">
+              <Sparkles
+                size={20}
+                className="text-white"
+              />
+            </div>
 
-          <a
-            href="#"
-            className="transition hover:text-blue-400"
-          >
-            About
-          </a>
+            <span className="text-xl font-black tracking-wide">
+              Wardrobe AI
+            </span>
+          </Link>
 
-          <a
-            href="#"
-            className="transition hover:text-blue-400"
-          >
-            Contact
-          </a>
-        </div>
+          <div className="hidden items-center gap-8 md:flex">
+            <a
+              href="#features"
+              className="text-gray-300 transition hover:text-white"
+            >
+              Features
+            </a>
 
-      </nav>
+            <a
+              href="#faq"
+              className="text-gray-300 transition hover:text-white"
+            >
+              FAQ
+            </a>
+
+            <Button variant="secondary">
+              Login
+            </Button>
+
+            <Button>
+              Get Started
+            </Button>
+          </div>
+        </nav>
+      </Container>
     </header>
   );
 }
