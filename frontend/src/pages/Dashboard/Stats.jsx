@@ -1,40 +1,58 @@
-import { Shirt, Heart, Sparkles } from "lucide-react";
-
-const stats = [
-  {
-    title: "Total Clothes",
-    value: "54",
-    icon: Shirt,
-    color: "text-blue-400",
-  },
-  {
-    title: "Favorites",
-    value: "12",
-    icon: Heart,
-    color: "text-pink-400",
-  },
-  {
-    title: "AI Outfits",
-    value: "138",
-    icon: Sparkles,
-    color: "text-emerald-400",
-  },
-];
+import { motion } from "framer-motion";
+import {
+  Shirt,
+  Heart,
+  Sparkles,
+} from "lucide-react";
+import { useWardrobe } from "../../contexts/WardrobeContext";
 
 export default function Stats() {
+  const { clothes } = useWardrobe();
+
+  const stats = [
+    {
+      title: "Total Clothes",
+      value: clothes.length,
+      icon: Shirt,
+      color: "text-blue-400",
+    },
+    {
+      title: "Favorites",
+      value: clothes.filter((c) => c.favorite).length,
+      icon: Heart,
+      color: "text-red-400",
+    },
+    {
+      title: "AI Outfits",
+      value: Math.max(12, clothes.length * 3),
+      icon: Sparkles,
+      color: "text-emerald-400",
+    },
+  ];
+
   return (
     <div className="grid gap-6 md:grid-cols-3">
-      {stats.map((item) => {
+      {stats.map((item, index) => {
         const Icon = item.icon;
 
         return (
-          <div
+          <motion.div
             key={item.title}
-            className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: index * 0.1,
+              duration: 0.4,
+            }}
+            whileHover={{
+              y: -6,
+              scale: 1.02,
+            }}
+            className="rounded-3xl border border-zinc-800 bg-zinc-900 p-6"
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">
+                <p className="text-gray-400">
                   {item.title}
                 </p>
 
@@ -43,11 +61,13 @@ export default function Stats() {
                 </h2>
               </div>
 
-              <div className="rounded-2xl bg-slate-900 p-4">
-                <Icon className={`h-8 w-8 ${item.color}`} />
+              <div className="rounded-2xl bg-slate-950 p-4">
+                <Icon
+                  className={`h-8 w-8 ${item.color}`}
+                />
               </div>
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </div>

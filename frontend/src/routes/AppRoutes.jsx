@@ -7,14 +7,17 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
-import Dashboard from "../pages/Dashboard/Dashboard";
 
-import ProtectedRoute from "./ProtectedRoute";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Wardrobe from "../pages/Wardrobe/Wardrobe";
+import Favorites from "../pages/Favorites/Favorites";
+import AIStylist from "../pages/AIStylist/AIStylist";
+import Settings from "../pages/Settings/Settings";
 
 function AppRoutes() {
   return (
     <Routes>
-      {/* Public Website */}
+      {/* Public */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
       </Route>
@@ -25,15 +28,13 @@ function AppRoutes() {
         <Route path="/register" element={<Register />} />
       </Route>
 
-      {/* Protected Dashboard */}
-      <Route
-        element={
-          <ProtectedRoute>
-            <DashboardLayout />
-          </ProtectedRoute>
-        }
-      >
+      {/* Dashboard */}
+      <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/wardrobe" element={<Wardrobe />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/ai" element={<AIStylist />} />
+        <Route path="/settings" element={<Settings />} />
       </Route>
     </Routes>
   );
